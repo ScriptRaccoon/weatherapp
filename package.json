@@ -18,6 +18,8 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "netlify-cli": "^8.16.1",
+    "node-fetch": "^2.6.7",
     "sirv-cli": "^2.0.0"
   }
 }

@@ -1,16 +1,20 @@
 <script>
     export let data = {};
-    import { getWeatherData } from "../api.js";
     let value = "";
     let error = "";
     async function makeAPICall() {
-        const weatherData = await getWeatherData(value);
-        if (weatherData.error) {
-            error = weatherData.error;
-        } else {
-            error = "";
-            data = weatherData;
-            value = weatherData.name;
+        try {
+            const res = await fetch(`/api/weather?city=${value}`);
+            const resData = await res.json();
+            if (res.ok) {
+                error = "";
+                data = resData;
+                value = data.name;
+            } else {
+                throw resData.message;
+            }
+        } catch (err) {
+            error = err;
         }
     }
 </script>
