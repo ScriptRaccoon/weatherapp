@@ -28,7 +28,8 @@
         autocomplete="off"
         placeholder="City"
     />
-    <button type="submit">Submit</button>
+
+    <button type="submit">Get Weather</button>
 
     <p id="error">{error}</p>
 </form>
@@ -36,6 +37,18 @@
 <style>
     label {
         visibility: hidden;
+    }
+    ::placeholder {
+        color: white;
+        opacity: 1; /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+        color: white;
+    }
+
+    ::-ms-input-placeholder {
+        color: white;
     }
     form {
         text-align: center;
@@ -50,7 +63,8 @@
         font-weight: bold;
     }
     input {
-        width: 200px;
+        max-width: 300px;
+        padding: 5px !important;
         border-bottom: 1px solid white;
         text-align: center;
         font-family: Consolas, monospace;
