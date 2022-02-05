@@ -14,7 +14,7 @@
 
 <style>
     :global(body) {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
         background-color: rgb(93, 168, 197);
         color: white;
         overflow-x: hidden;

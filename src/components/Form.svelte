@@ -67,7 +67,6 @@
         padding: 5px !important;
         border-bottom: 1px solid white;
         text-align: center;
-        font-family: Consolas, monospace;
         opacity: 0.6;
         transition: opacity 100ms linear;
     }

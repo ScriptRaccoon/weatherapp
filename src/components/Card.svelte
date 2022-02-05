@@ -6,109 +6,107 @@
     $: temp = Math.round(data.main.temp);
     $: description = data.weather[0].description;
     $: icon = data.weather[0].icon;
-    $: iconURL = `https://openweathermap.org/img/wn/${icon}@4x.png`;
+    $: iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
     $: country = data.sys.country;
     $: cloudiness = Math.round(data.clouds.all);
     $: windSpeed = data.wind.speed.toFixed(1);
 </script>
 
-{#key city}
-    <div class="cardContainer">
-        <div class="card" in:fly={{ x: -200 }} out:fly={{ x: +200 }}>
-            <h1>Weather for {city} ({country})</h1>
-            <div class="summary">
-                <img src={iconURL} alt="weather icon" />
-                <p class="description">
-                    {description}
-                </p>
-            </div>
-            <ul class="details">
-                <li>
-                    <img
-                        src="./icons/temperature.png"
-                        alt="temperature icon"
-                    />
-                    <span>
-                        {temp}°
-                    </span>
-                </li>
-                <li>
-                    <img src="./icons/cloud.png" alt="cloud icon" />
-                    <span>{cloudiness}%</span>
-                </li>
-                <li>
-                    <img
-                        src="./icons/wind.png"
-                        alt="wind icon"
-                    /><span>{windSpeed} m/s</span>
-                </li>
-            </ul>
-        </div>
+<div class="card" in:fly={{ x: -200 }} out:fly={{ x: +200 }}>
+    <h1>Weather for {city}</h1>
+    <h2>{country}</h2>
+
+    <div title="temperature" class="temperature">
+        {temp}°C
     </div>
-{/key}
+
+    <div title="weather" class="imageContainer">
+        <img src={iconURL} alt="weather icon" />
+    </div>
+
+    <p class="description">{description}</p>
+
+    <ul class="details">
+        <li title="cloudiness">
+            <img
+                class="icon"
+                src="./icons/cloud.png"
+                alt="cloud icon"
+            />
+            <span>{cloudiness}%</span>
+        </li>
+        <li title="wind speed">
+            <img
+                class="icon"
+                src="./icons/wind.png"
+                alt="wind icon"
+            /><span>{windSpeed} m/s</span>
+        </li>
+    </ul>
+</div>
 
 <style>
-    .cardContainer {
-        position: absolute;
-        left: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-    }
     .card {
         border-radius: 20px;
         background-color: rgb(49, 118, 146);
         box-shadow: 0px 0px 20px rgba(240, 240, 255, 0.533);
-        padding: 40px;
+        padding: 20px;
         font-size: 20px;
-        margin: 0px 20px;
-        max-width: 90%;
+        max-width: min(400px, 90%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    h1 {
+    h1,
+    h2 {
         font-size: min(40px, 10vw);
         font-weight: 300;
         color: rgb(255, 238, 0);
+        align-self: flex-start;
     }
 
-    .summary {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+    h2 {
+        font-size: min(20px, 5vw);
     }
 
-    .summary img {
-        max-width: 30vw;
+    .temperature {
+        font-size: 50px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-weight: 300;
+    }
+
+    .imageContainer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .imageContainer img {
+        display: block;
     }
 
     .description {
-        display: flex;
-        align-items: center;
-        font-size: 25px;
+        text-align: center;
+        transform: translateY(-20px);
+        margin-bottom: 20px;
     }
 
-    .details {
-        display: flex;
-        justify-content: space-between;
-    }
     .details > * {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 5px;
+        font-size: 16px;
     }
 
-    .details img {
-        width: 45px;
+    .icon {
+        width: 25px;
     }
 
-    @media (max-width: 440px) {
+    @media (min-width: 420px) {
         .details {
-            flex-direction: column;
-        }
-    }
-    @media (max-width: 300px) {
-        .summary {
-            display: block;
-            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
         }
     }
 </style>
