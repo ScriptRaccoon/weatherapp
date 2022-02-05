@@ -1,5 +1,6 @@
 <script>
     import { fly } from "svelte/transition";
+    import { cubicOut } from "svelte/easing";
     export let data;
     $: console.log(data);
     $: city = data.name;
@@ -12,41 +13,55 @@
     $: windSpeed = data.wind.speed.toFixed(1);
 </script>
 
-<div class="card" in:fly={{ x: -200 }} out:fly={{ x: +200 }}>
-    <h1>Weather for {city}</h1>
-    <h2>{country}</h2>
+{#key data.name}
+    <div class="cardContainer">
+        <div
+            class="card"
+            in:fly={{ x: -200, duration: 700, easing: cubicOut }}
+            out:fly={{ x: +200, duration: 700, easing: cubicOut }}
+        >
+            <h1>Weather for {city}</h1>
+            <h2>{country}</h2>
 
-    <div title="temperature" class="temperature">
-        {temp}°C
+            <div title="temperature" class="temperature">
+                {temp}°C
+            </div>
+
+            <div title="weather" class="imageContainer">
+                <img src={iconURL} alt="weather icon" />
+            </div>
+
+            <p class="description">{description}</p>
+
+            <ul class="details">
+                <li title="cloudiness">
+                    <img
+                        class="icon"
+                        src="./icons/cloud.png"
+                        alt="cloud icon"
+                    />
+                    <span>{cloudiness}%</span>
+                </li>
+                <li title="wind speed">
+                    <img
+                        class="icon"
+                        src="./icons/wind.png"
+                        alt="wind icon"
+                    /><span>{windSpeed} m/s</span>
+                </li>
+            </ul>
+        </div>
     </div>
-
-    <div title="weather" class="imageContainer">
-        <img src={iconURL} alt="weather icon" />
-    </div>
-
-    <p class="description">{description}</p>
-
-    <ul class="details">
-        <li title="cloudiness">
-            <img
-                class="icon"
-                src="./icons/cloud.png"
-                alt="cloud icon"
-            />
-            <span>{cloudiness}%</span>
-        </li>
-        <li title="wind speed">
-            <img
-                class="icon"
-                src="./icons/wind.png"
-                alt="wind icon"
-            /><span>{windSpeed} m/s</span>
-        </li>
-    </ul>
-</div>
+{/key}
 
 <style>
+    .cardContainer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
     .card {
+        position: absolute;
         border-radius: 20px;
         background-color: rgb(49, 118, 146);
         box-shadow: 0px 0px 20px rgba(240, 240, 255, 0.533);
