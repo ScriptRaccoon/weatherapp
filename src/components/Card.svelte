@@ -118,7 +118,7 @@
         width: 25px;
     }
 
-    @media (min-width: 420px) {
+    @media (min-width: 300px) {
         .details {
             display: flex;
             gap: 20px;
