@@ -1,4 +1,5 @@
 <script>
+    import { slide } from "svelte/transition";
     export let data = {};
     let value = "";
     let error = "";
@@ -31,7 +32,9 @@
 
     <button type="submit">Get Weather</button>
 
-    <p id="error">{error}</p>
+    {#if error}
+        <p transition:slide={{ duration: 150 }} id="error">{error}</p>
+    {/if}
 </form>
 
 <style>
@@ -59,7 +62,6 @@
         align-items: center;
     }
     #error {
-        color: rgb(122, 58, 93);
         font-weight: bold;
     }
     input {
