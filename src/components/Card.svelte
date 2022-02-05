@@ -63,7 +63,7 @@
     .card {
         position: absolute;
         border-radius: 20px;
-        background-color: rgb(49, 118, 146);
+        background: var(--gradient);
         box-shadow: 0px 0px 20px rgba(240, 240, 255, 0.533);
         padding: 20px;
         font-size: 20px;

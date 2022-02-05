@@ -75,10 +75,7 @@
     }
     button {
         margin: 20px 5px;
-        background: linear-gradient(
-            rgb(66, 120, 141),
-            rgb(66, 107, 124)
-        );
+        background: var(--gradient);
         padding: 6px 10px;
         border-radius: 4px;
         font-size: 16px;

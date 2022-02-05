@@ -19,6 +19,12 @@
         color: white;
         overflow-x: hidden;
     }
+    :global(:root) {
+        --gradient: linear-gradient(
+            rgb(66, 120, 141),
+            rgb(66, 107, 124)
+        );
+    }
     main {
         position: relative;
     }
