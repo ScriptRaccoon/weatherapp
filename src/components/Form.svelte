@@ -40,7 +40,7 @@
     }
     ::placeholder {
         color: white;
-        opacity: 1; /* Firefox */
+        opacity: 1;
     }
 
     :-ms-input-placeholder {
@@ -63,8 +63,8 @@
         font-weight: bold;
     }
     input {
-        max-width: 300px;
-        padding: 5px !important;
+        width: min(300px, 90vw);
+        padding: 3px 0px;
         border-bottom: 1px solid white;
         text-align: center;
         opacity: 0.6;
